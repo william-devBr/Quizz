@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale= 1.0" />
+    <title>QuizzMe</title>
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+    
+  </head>
+  <body>
+    <header>
+      <h2>Quizz me</h2>
+    </header>
+    <main>
+      <div class="container">
+        <div class="grid">
+            <div class="grid-item">
+
+                <form class="form">
+                    <h3>Qual o seu nome ?</h3>
+                    <input name="nome" type="text" style="width: 200px; height: 30px; border-radius: 5px;">
+                    <button type="submit" class="btn">Prosseguir</button>
+                </form>
+          <!-- quiz container-->
+          <h2 id="title-quiz"></h2>
+          <div class="container quiz">
+            <div>
+                <div id="quiz"></div>
+                <span style="font-size: 14px;" id="text"></span>
+            </div>
+           
+         </div>
+         <!-- end quiz container-->
+            </div>
+            <div>someting anything</div>
+      </div>
+    </div>
+
+    </main> <script src="script.js"></script>
+    <script>
+     // _Obj.init();
+       //localStorage.removeItem("user");
+       const form = document.querySelector('.form');
+       const _nome = form.nome;
+
+       if(localStorage.getItem("user")){
+
+           form.innerHTML = `<h3>Bem vindo(a), ${localStorage.getItem("user")}</h3>`;
+           form.innerHTML += ` <button type="submit" class="btn">Prosseguir</button>`;
+
+           form.onsubmit=(event)=>{
+              event.preventDefault();
+                
+                form.innerHTML = _Obj.init();
+                form.style.display = "none";
+
+           }
+           
+
+
+       }else {
+
+       form.onsubmit = function(event){
+          event.preventDefault();
+             if(_nome.value !== ''){
+                 localStorage.setItem("user", _nome.value);
+                 form.style.display = "none";
+                 form.innerHTML = _Obj.init();
+             }else{
+                 _nome.style.border = "solid 1px red";
+             }
+           console.log(_nome.value);
+       }
+    }
+ 
+    </script>
+  </body>
+</html>
